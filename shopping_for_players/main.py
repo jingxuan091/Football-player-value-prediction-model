@@ -3,10 +3,12 @@
 #this is a super simple main file to be improved
 
 from preprocessing import preprocess_data
-from model import train_model, make_predictions
+from models import train_model, make_predictions
+
+mydata="../rawdata/appearances.csv"
 
 # Load and preprocess the data
-data = preprocess_data("data.csv")
+data = preprocess_data(mydata)
 
 # Train the model
 model = train_model(data)

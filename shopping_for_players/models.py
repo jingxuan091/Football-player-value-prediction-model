@@ -1,6 +1,13 @@
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.ensemble import LinearRegression
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
+
+def train_model(data):
+    print ("Hello! I am an empty training function.\nI am looking for my purpose in life!")
+
+def make_predictions(data,model):
+    print ("Hello! I am an empty prediction function.\nI am looking for my purpose in life!")
+
 
 class GBR:
     def __init__(self, n_estimators=100, max_depth=3, learning_rate=0.1):
