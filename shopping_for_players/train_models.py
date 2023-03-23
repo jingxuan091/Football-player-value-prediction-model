@@ -1,9 +1,6 @@
-# main.py
-
-#this is a super simple main file to be improved
-
+import pickle
 from preprocessing import preprocess_data
-from models import train_model, make_predictions
+from models import train_model
 
 mydata="../rawdata/appearances.csv"
 
@@ -13,8 +10,6 @@ data = preprocess_data(mydata)
 # Train the model
 model = train_model(data)
 
-# Make predictions
-predictions = make_predictions(model, data)
-
-# Print the predictions
-print(predictions)
+# Load the trained model from the file
+with open('trained_model.pkl', 'wb') as f:
+    trained_model = pickle.dump(model,f)
