@@ -5,15 +5,10 @@ with open("requirements.txt") as f:
     content = f.readlines()
 requirements = [x.strip() for x in content if "git+" not in x]
 
-setup(name='taxifare',
+setup(name='shopping_for_players',
       version="0.0.10",
-      description="TaxiFare Model (automate_model_lifecycle)",
+      description="predicts football players transfer value",
       author="Andrea, Andrew, Jin",
-      #url="https://github.com/lewagon/taxi-fare",
       install_requires=requirements,
       packages=find_packages()
-      #test_suite="tests",
-      # include_package_data: to install data from MANIFEST.in
-      #include_package_data=True,
-      #zip_safe=False
       )

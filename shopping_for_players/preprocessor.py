@@ -71,6 +71,8 @@ def player_stats(player_id, season, games_and_appearances_df):
 
 
 # preprocessing function to return a dataframe
+#produced the merged player dataset
+#requires player_status function
 def preprocessing(clubs_df,players_df,games_and_appearances_df):
 
     merged_players_df=players_df.drop(['current_club_id', 'city_of_birth', 'date_of_birth','first_name', 'last_name', 'player_code', 'image_url', 'url'], axis=1)

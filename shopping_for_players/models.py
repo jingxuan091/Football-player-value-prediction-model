@@ -3,9 +3,8 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
 import pickle
 
-def preprocess_data(data):
-    print ("Hello! I am an empty preprocess function.\nI am looking for my purpose in life!")
-    return data
+
+
 
 def create_LR():
     model = LinearRegression()
@@ -20,23 +19,23 @@ def create_GBR(n_estimators=100, max_depth=3, learning_rate=0.1):
     return model
 
 
-def train_model(model, training_data):
-    X = training_data.drop(columns=[]'market_value_in_eur'])
-    y = training_data['market_value_in_eur']
+def train_model(model, X, y):
+   # X = training_data.drop(columns=['market_value_in_eur'])
+   # y = training_data['market_value_in_eur']
     model.fit(X, y)
     with open('trained_model.pkl', 'wb') as f:
         trained_model = pickle.dump(model,f)
     return trained_model
 
 
-def prediction(input_data):
+def prediction(X):
 
     # Load the trained model from the file
     with open('trained_model.pkl', 'rb') as f:
         trained_model = pickle.load(f)
 
     # Use the trained model to make predictions on new data
-    predictions = trained_model.predict(input_data)
+    predictions = trained_model.predict(X)
 
     # Print the predictions
     return predictions
