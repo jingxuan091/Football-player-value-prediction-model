@@ -1,32 +1,59 @@
+import pandas as pd
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
+import pickle
 
-def train_model(data):
-    print ("Hello! I am an empty training function.\nI am looking for my purpose in life!")
+def preprocess_data(data):
+    print ("Hello! I am an empty preprocess function.\nI am looking for my purpose in life!")
+    return data
+
+def create_LR():
+    model = LinearRegression()
+    return model
+
+def create_GBR(n_estimators=100, max_depth=3, learning_rate=0.1):
+    model = GradientBoostingRegressor(
+        n_estimators=n_estimators,
+        max_depth=max_depth,
+        learning_rate=learning_rate
+    )
+    return model
+
+
+def train_model(model, training_data):
+    X = training_data.drop(columns=[]'market_value_in_eur'])
+    y = training_data['market_value_in_eur']
+    model.fit(X, y)
+    with open('trained_model.pkl', 'wb') as f:
+        trained_model = pickle.dump(model,f)
+    return trained_model
+
+
+def prediction(input_data):
+
+    # Load the trained model from the file
+    with open('trained_model.pkl', 'rb') as f:
+        trained_model = pickle.load(f)
+
+    # Use the trained model to make predictions on new data
+    predictions = trained_model.predict(input_data)
+
+    # Print the predictions
+    return predictions
+
+
+
+
+
+
+
+"""
+old piece of code. You never know...
 
 def make_predictions(data,model):
     print ("Hello! I am an empty prediction function.\nI am looking for my purpose in life!")
 
 
-class GBR:
-    def __init__(self, n_estimators=100, max_depth=3, learning_rate=0.1):
-        self.model = GradientBoostingRegressor(
-            n_estimators=n_estimators,
-            max_depth=max_depth,
-            learning_rate=learning_rate
-        )
-
-    def train(self, X_train, y_train):
-        self.model.fit(X_train, y_train)
-
-    def predict(self, X_test):
-        return self.model.predict(X_test)
-
-    def evaluate(self, X_test, y_test):
-        y_pred = self.predict(X_test)
-        mse = mean_squared_error(y_test, y_pred)
-        return mse
 
 class Linear:
     def __init__(self, n_estimators=100, max_depth=3, learning_rate=0.1):
@@ -65,3 +92,4 @@ class Linear_mae:
         y_pred = self.predict(X_test)
         mae = mean_absolute_error(y_test, y_pred)
         return mae
+"""
