@@ -1,20 +1,11 @@
-# main.py
+import pickle
 
-#this is a super simple main file to be improved
+# Load the trained model from the file
+with open('trained_model.pkl', 'rb') as f:
+    trained_model = pickle.load(f)
 
-from preprocessing import preprocess_data
-from models import train_model, make_predictions
-
-mydata="../rawdata/appearances.csv"
-
-# Load and preprocess the data
-data = preprocess_data(mydata)
-
-# Train the model
-model = train_model(data)
-
-# Make predictions
-predictions = make_predictions(model, data)
+# Use the trained model to make predictions on new data
+predictions = trained_model.predict(new_data)
 
 # Print the predictions
 print(predictions)
