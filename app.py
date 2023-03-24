@@ -11,7 +11,7 @@ st.markdown("""# Shopping for players
 ## value prediction
 Give us some feauters and we provide you their market value """)
 
-image = Image.open('football.jpg')
+image = Image.open('web/football.jpg')
 st.image(image, caption='Football is life', width=25, use_column_width=True)
 
 columns = st.columns(5)
