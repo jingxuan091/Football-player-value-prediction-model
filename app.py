@@ -64,7 +64,7 @@ with columns[3]:
 
 if st.button('Tell me the value 😉 '):
     # print is visible in the server output, not in the page
-    value = predictor(age=int(age),height_in_cm=int(height),goals_2022=int(goals),goals_against_2022=int(goals_against),
+    value = predictor(age=int(age),height_in_cm=int(height),goals_for_2022=int(goals),goals_against_2022=int(goals_against),
                       yellow_cards_2022=int(yellow_cards),red_cards_2022=int(red_cards),games_2022=int(games),
                       term_days_remaining=int(term_days_remaining),
                       current_club_domestic_competition_id=selected_competition,current_club_name=selected_club)
