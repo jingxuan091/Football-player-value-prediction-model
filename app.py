@@ -14,7 +14,7 @@ Give us some feauters and we provide you their market value """)
 image = Image.open('web/football.jpg')
 st.image(image, caption='Football is life', width=25, use_column_width=True)
 
-columns = st.columns(6)
+columns = st.columns(4)
 
 
 age = columns[0].text_input("Age",  "")
@@ -29,28 +29,31 @@ columns[2].write(goals)
 goals_against = columns[3].text_input("Goals against",  "")
 columns[3].write(goals_against)
 
-yellow_cards = columns[4].text_input("Yellow cards", "")
-columns[4].write(yellow_cards)
+columns = st.columns(4)
 
-red_cards = columns[5].text_input("Red cards", "")
-columns[5].write(red_cards)
+yellow_cards = columns[0].text_input("Yellow cards", "")
+columns[0].write(yellow_cards)
 
-columns = st.columns([1, 1,2,3])
+red_cards = columns[1].text_input("Red cards", "")
+columns[1].write(red_cards)
 
-games = columns[0].text_input("Games",  "")
-columns[0].write(games)
+games = columns[2].text_input("Games",  "")
+columns[2].write(games)
+
+term_days_remaining = columns[3].text_input("Term days remaining", "")
+columns[3].write(term_days_remaining)
 
 
-term_days_remaining = columns[1].text_input("Term days remaining", "")
-columns[1].write(term_days_remaining)
+columns = st.columns([1, 1,])
 
-with columns[2]:
+
+with columns[0]:
     with st.expander("Position"):
         st.radio("Position", ["Goalkeeper", "Defender", "Midfield", "Attack"])
 #expander = st.expander("Position")
 #expander.radio("Position",["Goalkepper", "Defender", "Midfield","Attack"])
 
-with columns[3]:
+with columns[1]:
     competitions = {
      'UKR1', 'DK1', 'GR1', 'SC1', 'BE1', 'RU1', 'NL1', 'TR1', 'PO1', 'FR1', 'L1', 'IT1', 'ES1', 'GB1'
 }
