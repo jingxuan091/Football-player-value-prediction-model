@@ -13,8 +13,8 @@ import numpy as np
 import pickle
 
 
-transformer = pickle.load(open("../models/transformer_1.sav", "rb"))
-model = pickle.load(open("../models/gbr_1.sav", "rb"))
+transformer = pickle.load(open("models/transformer_1.sav", "rb"))
+model = pickle.load(open("models/gbr_1.sav", "rb"))
 
 def predictor(games_2022=20,minutes_played_2022=1800,goals_2022=200,assists_2022=15,goals_against_2022=150,
               goals_for_2022=10,clean_sheet_2022=7,height_in_cm=186,age=31,club_value=15e8,squad_size=18,

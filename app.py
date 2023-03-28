@@ -4,7 +4,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
-
+from shopping_for_players.computer import predictor
 
 
 st.markdown("""# Shopping for players
@@ -67,4 +67,8 @@ with columns[1]:
 
 if st.button('Tell me the value 😉 '):
     # print is visible in the server output, not in the page
-    st.write('Surprise 😲 Your Value equals 🥳')
+    value = predictor(age=int(age),height_in_cm=int(height),goals_2022=int(goals),goals_against_2022=int(goals_against),
+                      yellow_cards_2022=int(yellow_cards),red_cards_2022=int(red_cards),games_2022=int(games),
+                      term_days_remaining=int(term_days_remaining),
+                      current_club_domestic_competition_id=selected_competition,current_club_name=selected_club)
+    st.write(f'Surprise 😲 Your Value equals 🥳 {value}')
