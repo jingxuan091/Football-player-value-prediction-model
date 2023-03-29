@@ -5,7 +5,27 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from shopping_for_players.computer import predictor
+import pickle
 
+# model_Attack = pickle.load(open("models/Attack_model.pikle", "rb"))
+# transformer_Attack= pickle.load(open("models/Attack_transformer.pikle", "rb"))
+
+# model_Defender = pickle.load(open("models/Defender_model.pikle", "rb"))
+# transformer_Defender= pickle.load(open("models/Defender_transformer.pikle", "rb"))
+
+# model_Goalkeeper = pickle.load(open("models/Goalkeeper_model.pikle", "rb"))
+# transformer_Goalkeeper = pickle.load(open("models/Goalkeeper_transformer.pikle", "rb"))
+
+# model_Midfield= pickle.load(open("models/Midfield_model.pikle", "rb"))
+# transformer_Midfield= pickle.load(open("models/Midfield_transformer.pikle", "rb"))
+
+with open("models/Midfield_model.pikle", 'rb') as f:
+    # load using pickle de-serializer
+    model_Midfield = pickle.load(f)
+
+# with open("models/Midfield_model.pikle", 'r') as f:
+#     # load using pickle de-serializer
+#     model_Midfield = pickle.load(f)
 
 st.markdown("""# Shopping for players
 ## value prediction
@@ -53,7 +73,8 @@ columns = st.columns([1, 1,])
 
 with columns[0]:
     with st.expander("Position"):
-        st.radio("Position", ["Goalkeeper", "Defender", "Midfield", "Attack"])
+        position = st.radio("Position", ["Goalkeeper", "Defender", "Midfield", "Attack"])
+
 #expander = st.expander("Position")
 #expander.radio("Position",["Goalkepper", "Defender", "Midfield","Attack"])
 
@@ -91,11 +112,26 @@ with columns[1]:
     #with st.expander("Select Club"):
      #   selected_club = st.selectbox("Select a club", clubs)
 
+if position == "Attack":
+    model = model_Attack
+    transformer = transformer_Attack
+elif position == "Defender":
+    model = model_Defender
+    transformer = transformer_Defender
+elif position == "Goalkeeper":
+    model = model_Goalkeeper
+    transformer = transformer_Goalkeeper
+else:
+    model = model_Midfield
+    transformer = transformer_Midfield
+
 if st.button('Tell me the value 😉'):
     value = predictor(age=int(age), height_in_cm=int(height), goals_for_2022=int(goals), goals_against_2022=int(goals_against),
                       yellow_cards_2022=int(yellow_cards), red_cards_2022=int(red_cards), games_2022=int(games),
                       term_days_remaining=int(term_days_remaining),
-                      current_club_domestic_competition_id=selected_competition, current_club_name=selected_club)
+                      current_club_domestic_competition_id=selected_competition,
+                      current_club_name=selected_club,model=model,transformer=transformer)
+
     float_value = float(value)
     formatted_value = '{:,.2f} €'.format(float_value)
     st.markdown(f'<div style="font-size: xx-large; color: #ff5733;">Surprise {name} 😲  Your market value = 🥳 {formatted_value}</div>', unsafe_allow_html=True)
