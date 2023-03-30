@@ -10,17 +10,13 @@ from sklearn.impute import SimpleImputer, KNNImputer
 from sklearn import set_config; set_config(display='diagram')
 import pandas as pd
 import numpy as np
-import pickle
-
-
-transformer = pickle.load(open("models/transformer_1.sav", "rb"))
-model = pickle.load(open("models/gbr_1.sav", "rb"))
 
 def predictor(games_2022=20,minutes_played_2022=1800,goals_2022=200,assists_2022=15,goals_against_2022=150,
               goals_for_2022=10,clean_sheet_2022=7,height_in_cm=186,age=31,club_value=15e8,squad_size=18,
               term_days_remaining=200,value_goals_for_2022=15e8,yellow_cards_2022=2,red_cards_2022=0,
               sub_position="Left Winger",foot="Right",country_of_citizenship="Italy",
-              current_club_domestic_competition_id="IT1",current_club_name="Juventus Turin"):
+              current_club_domestic_competition_id="IT1",current_club_name="Juventus Turin",
+              model=None, transformer=None):
 
     player = pd.DataFrame()
     player['games_2022'] =[games_2022]
