@@ -10,5 +10,5 @@ This project predicts football players' transfer value with a machine learning m
  * 300,000+ player market valuations historical records
  * 1,000,000+ player appearance records from all games
 
-### Streamlit app: 
+### Deployed Streamlit app: 
 https://jingxuan091-shopping-for-players-app-v3-mrr1tz.streamlit.app/
